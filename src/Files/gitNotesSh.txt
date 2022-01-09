@@ -1,0 +1,499 @@
+GIT NOTES:
+GIT STEPS:
+
+1.Create repo in github account
+2.Before doing any operation gitrepo/git has to know which user is doing these operatons.so use your
+ email id and name using command prompt.
+
+we can use tortise git-ui-to talk to git
+or using eclipse,intellij etc. but we will use command prompt.
+
+Commands:
+
+1.git config(config meaning -Set) --global(if you set global you can accessit anywhere from system) user.name "shruti"
+
+2 Step: create folder(gitstuff)-put a dummy project(or real proj) to push to repo.
+3.from command prompt go to the dir created
+
+cd gitstuff
+
+4.make git hub to understand your folder you created using git init command
+
+git init---initialize git file into your current proj(gitstuff).
+
+for git to read your code git initialize one file in your proj folder ,it opens that and reads your proj.by default its
+not present.we need to initalize it by using git init
+
+git init.
+
+now we can push our code to github
+
+very imp:WATCH it
+
+
+1.you have code
+2.Initialize it as Git repository--yes done using git init command
+3.Add your code to stash. 
+
+what is stash and comit?
+
+
+there is GITHUB-
+when you give command to github to push your code it will look into/ for code which is commited.it will not
+look for code which is not commited
+
+For ex: 100files i edited---80 i want to commit and 20 files i dont want to commit..Git hub
+will look for 80 files andpublish into repo.
+
+if you dont comit anything and simply push ,github will complain saying there is nothing for me to accept.because there 
+are no comits.
+
+what is stash:? when we develop something its in stash then it goes to commit.
+its like stash is first level of commit say commit 1 and actuall commit is commit 2
+
+
+ORDER IS LIKE THIS:
+
+GITHUB--->takes code from Commit which are commited---->Commit takes code which are in stash only.
+
+So if you want to add anything to github you need to add your code to stash.Then commit the stash and store it in commit 
+and then push to github finally
+
+
+How to add our code to stash.?
+Below steps follow
+Move our local code to stash using below command
+
+
+git add *     (add-add code to stash , * -->add everythig)(commit level1)-you can add individual name
+Entire code is moved to stash
+
+git status     (what are the files added to the stash)
+
+**remeber staging and stash are same(commit 1)
+our code is in staging in the below diag.
+staging<--commit(next step )
+
+Now commit2 or just commit will look for code in staging/stash
+use below command for that
+
+git commit -m "first message"   (commit stands for commiting from staging and -m is for addingmesasge-always add msg)
+
+
+
+after this command our code is in commit step in below diag
+
+staging<---commit.
+now from commit it should be pushed to github
+
+
+
+
+three basic steps (initila steps)
+git add *---for staging
+git commit -m "" -------for commiting.
+git push
+
+
+-------------------------------------------------------------------------
+
+Now before pushing code we need to give an address to where to push..
+our github is remote repository(remote server) and my code in laptop folder(gitstuff) is local repo.
+"WE NEED TO FORM A CONNECTION BWN THESE 2 AND THEN PUSH." below is the command for same.
+
+git, remote, add the origin  (git remote-make a remote connection ,add the origin,here origin is the github remote repo url)
+
+exact command is:
+
+git remote add origin https://github.com/Vihaanshru/GitDemo.git
+
+now remote repo is successfully connected to local repo.
+
+
+Now push code from local to remote repo--git push to the origin command
+
+Exact command:   git push -u origin master  or git push origin master(same)
+(here no need to say origin url as it is already registered) and we are no master branch --later explained.
+
+when we create a repository in github, branch is always master.-very imp remeber this.
+
+after doing this you should see in github
+
+this is for creating new repo and do it.
+
+next note pad is how to get already existing code into local---by cloning..
+
+
+Go to command prompt:
+
+//clone is used to get the code for "First time only"
+//pull is used to get updates what happened(new code) after clone 
+
+
+git clone https://github.com/Vihaanshru/GitDemo.git   (go to clone button and get from repo)
+
+
+this should have created this repo in our local machine(git demo into vihaan folder)
+so X person created GITSTUFF-uploaded to git repo in github creating GITDemo repository.
+Y person downloaded into local--it is now saved as GitDemoFolder project for him
+
+
+Now import this project(gitDEmo) into eclipse and make some changes:
+
+GITDEMO--Downloaded
+GIT X(GITSTUFF)-created it
+
+
+GITDEMO user--edited code in gitdemo proj by gitdemo user
+
+first step is to stash or stage changes
+(git add *)
+
+1.go to folder where demoproj is(i.e inside git demo) not to just vihaan folder)inside git demo we have fiels)
+C:\Users\Vihaan\GitDemo
+2.git add *
+3.see what files got added using git status.(save files before git add *) otherwise you see those files in red color
+(this is called staging) otherwise it will show in red(msg:untracked files something like this
+after saving files do git status, it should show in green
+
+4.do git commit using git commit -m "message"
+
+5.then push(before that do the connection git commands.)
+git remote add origin (for first time,but if you are doing in same instance not needed
+
+
+6.now do git push origin master
+//go to github and see the changes are reflecting--yes reflecting
+
+
+Now next guy comes and takes this code(git x---git stuff) go to local repo(on laptop)he will not have this change)
+
+
+Once he comes to office he needs to take the PULL before making his changes--BEST PRACTICE--ALWAYS FOLLOW.
+
+
+go back to vihaan folder cd .. and go to GITSTUFF folder(git x guy)
+C:\Users\Vihaan\GitDemo>cd ..
+
+C:\Users\Vihaan>cd gitstuff
+
+C:\Users\Vihaan\GITSTUFF>
+
+
+for latest changes only use git pull from where?? origin  which branch master?
+
+
+exact comand   : git pull origin master
+
+(if you have any files changed but dont want to commit or not sure of what changes u have -its 
+ok to loose changes then do git reset --hard)
+
+check by using git status
+
+Now assume gitstuff guy does somechanges in same file(anagram) and some other file
+
+
+do git add * for staging first step(this is done without saving files--showing red still-to 
+see what happens)
+
+perform git commit now using git commit -m"american guy"
+
+
+do git push origin master
+
+go as gitdemo cd..
+cd git demo
+
+do git pull origin master
+
+che ck if it is updated --yes 
+
+
+BRANCH CONCEPT:
+
+
+scenario why branching is imp:
+
+GITStuff--X guy
+GITDEMo--Yguy
+
+in a company we needd enhancement framework. not tcs update.both need to work on framework 
+componenet. when this happens, all tcs fail .(ex: implementing bdd with pom instead of tdd)
+
+But we need regular tcs -for ergression to be run also.
+
+In that case we take a branch ..from master branch..sub branch..it will have same code as master
+branch.
+
+Architect changes will happen on branch.in this case we call as develop branch.
+usually second branch is called develop branch in company.
+
+Once like after a month development is complete on aframework arichitect they merge with master branch.
+
+Start branch operations here------------------------------
+
+Now we are in git demo.(Asian guy)
+
+
+go to git demo-he needs to take a branch(cut a branch is called)
+command is
+git checkout -b <branchname> (-b stands for creating new branch/or cutting the branch from main master,checkout stands for checkout master code)
+(so basically it copied the master repo and created a branch with different name and same code)
+
+
+ex:
+
+git checkout -b develop
+
+when u enter this command it says switched to a new branch develop
+
+if you want to kknow on which branhc you are in enter "git branch"command .
+exact command:  git branch,whichever branch you are in is shown with * and green color
+even in eclipse it tells you are in brnach that you created and not in master.
+check next to project-it says develop and not master
+
+now you can make changes in this branch (in eclipse-change some files)and it will not disturb master.
+
+push to staging
+commit
+push to develop branch (not master branch)---this is very important,pls remeber.
+
+we created a branch which has same code as master called develop branch--worked on it--push back to develop branch only.(after merge it goes to master)
+
+after pushing this changes to develop ,WE CHOULD SEE THE BRANCH WE CREATED " in git hub
+
+command is:
+
+git push origin develop
+
+go to github and switch to develop branch which is now created thru above command to see the changes
+
+in git hub it says"This branch is 1 commit ahead of master." when you switch to develop branch
+
+Now go back to GITSTUFF guy 
+cd ..
+cd GITSTUFF
+
+
+now this guy also has to work on develop branch
+
+take a pull of git branch develop...
+
+exact command:
+
+git pull origin develop  
+enter
+he will have code in his machine with all changes done by gitdemo guy but he is still on master branch,he needs to switch to develop
+branch. how to switch from master branch to develop branch?
+exact command to enter:
+git checkout develop
+(here dont use -b because we are not creating new branch,we are using the existing branch created by other guy called develop.)
+Now check in eclipse: you can see git stuff is on develop branch now with all cahnges made by him as well.
+
+Now make changes by this gitstuff.
+edit some code and perform same operation again.
+
+(we will discuss merge conflict later,continue the flow now)
+Add another file called git stuff
+
+save changes-->git stage/stash-->commit --->push to develop 
+go to git hub and see the changes reflected
+
+Ingit hub for develop changes it says:
+This branch is 2 commits ahead of master.
+
+now the develop code is full ready and ready to be merged to master.
+
+how to push to master and merge?? and make into one powerfull framework.
+
+STEPS:
+first go to master branch
+1.Switch to master branch
+//git checkout master
+
+2.Take a pull so that we have latest code from the repository and we are upto date with it.
+//git pull origin master
+it should say already uptodate .
+
+3.Now to merge both use command:
+git merge develop(here always give branch which you want to merge with the active branch .i.e branch which ur in currently=master here)
+//git merge develop
+
+4. Now the code is merged and you can see that your branch in eclipse is switched to master and all the changes from develop is seen 
+on Master branch as well
+
+DONE HERE.
+
+Now add one more file quickly by gitstuff and push, we still need to get gitdemo guyy to master..we only made gitstuff to master.
+
+
+Now switch to git demo workspace cd ..
+cd gitdemo
+here you are in develop branch still--go to master branch
+by using 
+//git checkout master
+and do git pull origin master-to get latest code
+//git pull origin master
+
+
+now go to eclipse and see--you should be on master branch with all the lates changes upto date(also the extra file line added)
+
+
+--MERGE CONFLICTS---------------------------------------------------------------------***************************************
+
+In what cases you get merge conflicts??
+
+add text file --and save with .txt and save it by--(git demo guy only).
+save under src/test/java/packagename/here
+
+make sure ur in master branch.
+add this single file instead of *
+pass link
+
+git add C:\Users\Vihaan\GitDemo\src\JavaCodingQues\names.txt
+
+now do git commit -m "names file added"
+enter
+(DONT PUSH CHANGES YET)
+
+now create new branch here DEVELOP2
+
+git checkout -b develop2
+add numbers to same file save
+do git add
+git commit -m "added numbers in same file"
+
+DONT COMMIT YET
+SHIFT TO MASTER BRANCH NOW
+
+{there should be 2 comits--1 in master 1 in develop2)
+
+Now in master branch you dont see the changes done by develop2 branches(numbers that were added)
+
+now master branch guy decided to remove the alpnhabets written like removed abc (he will not see the numbers added by develop2guy) and now commited code but
+develop2 guy dosent have these new changes he still see all alphabets .
+
+for commiting by master branch guy--
+do git add C:\Users\Vihaan\GitDemo\src\JavaCodingQues\names.txt 
+
+git commit -m "alphabets removed"
+
+go to develop2 branch--git checkout develop2.
+you dont see the new changes(alphabets removed)
+
+you still see all aplhabets and numbers(he wont see the alphabets that were removed changes)
+
+develop2guy will now add more numbers and DECIDED TO MERGE WITH MAIN CODE-MASTER)
+do git add C:\Users\Vihaan\GitDemo\src\JavaCodingQues\names.txt
+git commit -m "merge all"
+then use below comamnd
+SO HE WILL USE COMMAND:
+git merge master(because he wants to add master code to his code and make one single code)
+
+but master code dosent know which code it should take the one he already had or the lates where alph were removed--it throws conflict error here
+
+Go to file and remove everything under Head <<<<<and everything under MASTER <<<<<<<<<<<<< tags(We need to coordinate with other guy personally
+and do it)
+ok after doing how do we know it is resolved??
+
+
+I did not see (because 99 times it resolves conflict) only 1 % it is conflicting
+
+So commit again now and see
+by doing git add
+git commit and now do git merge master
+dont panic..look for file changes and resolve by talking to other guy.
+
+
+come back to develop2 /refresh and see you will see the changes
+
+
+----------------------------------------------------------------------------------------END OF TUT----------------------------------------------
+
+
+Learn git fetch+ reset code
+USe this code to rest and get fresh code
+
+git fetch origin
+git reset --hard
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
